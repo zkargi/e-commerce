@@ -25,8 +25,10 @@ const ProductDetailsPage = () => {
     fetchSingleProduct();
   }, [apiUrl, productId]);
 
+  console.log(singleProduct);
+
   return singleProduct ? (
-    <ProductDetails singleProduct={singleProduct} setSingleProduct={setSingleProduct} />
+    <ProductDetails singleProduct={singleProduct} />
   ) : (
     <p>Ürün Yükleniyor</p>
   );

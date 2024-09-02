@@ -12,6 +12,7 @@ router.post("/", async (req, res) => {
       currency: "usd",
       product_data: {
         name: product.name,
+        id: product._id, // Ürün ID'si, stok güncellemeleri için kullanılacak
       },
       unit_amount: Math.round(product.price * 100),
     },
@@ -38,6 +39,7 @@ router.post("/", async (req, res) => {
       line_items: lineItems,
       mode: "payment",
       success_url: `${process.env.CLIENT_DOMAIN}/success`,
+      cancel_url: `${process.env.CLIENT_DOMAIN}/cancel`,
     });
 
     res.status(200).json({ id: session.id });

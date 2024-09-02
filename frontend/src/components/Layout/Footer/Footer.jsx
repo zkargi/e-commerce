@@ -72,7 +72,7 @@ const Footer = () => {
               <div className="brand-info">
                 <div className="footer-logo">
                   <a href="index.html" className="logo">
-                    LOGO
+                    KARGİ DERİ
                   </a>
                 </div>
                 <div className="footer-desc">

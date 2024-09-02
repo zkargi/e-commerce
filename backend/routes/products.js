@@ -2,7 +2,6 @@ const express = require("express");
 const router = express.Router();
 const Product = require("../models/Product.js");
 
-
 // Yeni bir ürün oluşturma (Create)
 router.post("/", async (req, res) => {
   try {
@@ -12,9 +11,9 @@ router.post("/", async (req, res) => {
     res.status(201).json(newProduct);
   } catch (error) {
     console.log(error);
+    res.status(500).json({ error: "Server error." });
   }
 });
-
 
 // Tüm ürünleri getirme (Read - All)
 router.get("/", async (req, res) => {
@@ -57,11 +56,9 @@ router.put("/:productId", async (req, res) => {
       return res.status(404).json({ error: "Product not found." });
     }
 
-    const updatedProduct = await Product.findByIdAndUpdate(
-      productId,
-      updates,
-      { new: true }
-    );
+    const updatedProduct = await Product.findByIdAndUpdate(productId, updates, {
+      new: true,
+    });
 
     res.status(200).json(updatedProduct);
   } catch (error) {
@@ -82,6 +79,21 @@ router.delete("/:productId", async (req, res) => {
     }
 
     res.status(200).json(deletedProduct);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Server error." });
+  }
+});
+
+// Ürünleri isme göre ara
+router.get("/search/:productName", async (req, res) => {
+  try {
+    const productName = req.params.productName;
+    const products = await Product.find({
+      name: { $regex: productName, $options: "i" },
+    });
+
+    res.status(200).json(products);
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Server error." });

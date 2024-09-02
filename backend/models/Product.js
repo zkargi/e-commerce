@@ -26,6 +26,7 @@ const ProductSchema = mongoose.Schema(
       required: true,
     },
     description: { type: String, required: true },
+    stock: { type: Number, required: true }, // Stok bilgisi eklendi
   },
   { timestamps: true }
 );

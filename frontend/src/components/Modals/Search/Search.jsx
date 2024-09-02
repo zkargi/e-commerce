@@ -1,8 +1,7 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
 import { message } from "antd";
-import { useState } from "react";
 import "./Search.css";
+import { useState } from "react";
 
 const Search = ({ isSearchShow, setIsSearchShow }) => {
   const [searchResults, setSearchResults] = useState(null);
@@ -38,6 +37,7 @@ const Search = ({ isSearchShow, setIsSearchShow }) => {
       console.log(error);
     }
   };
+
 
   return (
     <div className={`modal-search ${isSearchShow ? "show" : ""} `}>
@@ -89,11 +89,7 @@ const Search = ({ isSearchShow, setIsSearchShow }) => {
             )}
             {searchResults?.length > 0 &&
               searchResults?.map((resultItem) => (
-                <Link
-                  to={`product/${resultItem._id}`}
-                  className="result-item"
-                  key={resultItem._id}
-                >
+                <a href="#" className="result-item" key={resultItem._id}>
                   <img
                     src={resultItem.img[0]}
                     className="search-thumb"
@@ -106,7 +102,7 @@ const Search = ({ isSearchShow, setIsSearchShow }) => {
                       ${resultItem.price.current.toFixed(2)}
                     </span>
                   </div>
-                </Link>
+                </a>
               ))}
           </div>
         </div>

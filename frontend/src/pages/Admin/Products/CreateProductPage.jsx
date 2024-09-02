@@ -35,7 +35,7 @@ const CreateProductPage = () => {
   const onFinish = async (values) => {
     const imgLinks = values.img.split("\n").map((link) => link.trim());
     const colors = values.colors.split("\n").map((link) => link.trim());
-    const sizes = values.sizes.split("\n").map((link) => link.trim());
+    const sizes = values.sizes ? values.sizes.split("\n").map((link) => link.trim()) : []; // Optional sizes
     setLoading(true);
     try {
       const response = await fetch(`${apiUrl}/api/products`, {
@@ -50,8 +50,8 @@ const CreateProductPage = () => {
             discount: values.discount,
           },
           colors,
-          sizes,
           img: imgLinks,
+          ...(sizes.length > 0 && { sizes }), // Include sizes only if provided
         }),
       });
 
@@ -67,7 +67,6 @@ const CreateProductPage = () => {
       setLoading(false);
     }
   };
-  
 
   return (
     <Spin spinning={loading}>
@@ -114,6 +113,20 @@ const CreateProductPage = () => {
         >
           <InputNumber />
         </Form.Item>
+
+        <Form.Item
+          label="Stok Miktarı"
+          name="stock"
+          rules={[
+            {
+              required: true,
+              message: "Lütfen stok miktarını girin!",
+            },
+          ]}
+        >
+          <InputNumber/>
+        </Form.Item>
+        
         <Form.Item
           label="İndirim Oranı"
           name="discount"
@@ -174,17 +187,11 @@ const CreateProductPage = () => {
           />
         </Form.Item>
         <Form.Item
-          label="Ürün Bedenleri"
+          label="Ürün Bedenleri (Opsiyonel)"
           name="sizes"
-          rules={[
-            {
-              required: true,
-              message: "Lütfen en az 1 ürün beden ölçüsü girin!",
-            },
-          ]}
         >
           <Input.TextArea
-            placeholder="Her bir beden ölçüsünü yeni bir satıra yazın."
+            placeholder="Her bir beden ölçüsünü yeni bir satıra yazın. Bedenler isteğe bağlıdır."
             autoSize={{ minRows: 4 }}
           />
         </Form.Item>

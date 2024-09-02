@@ -40,6 +40,12 @@ const ProductPage = () => {
       render: (text) => <span>%{text.discount}</span>,
     },
     {
+      title: "Stok",
+      dataIndex: "stock",
+      key: "stock",
+      render: (text) => <span>{text}</span>, // Stok bilgisi gösteriliyor
+    },
+    {
       title: "Actions",
       dataIndex: "actions",
       key: "actions",

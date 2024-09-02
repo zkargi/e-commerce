@@ -127,6 +127,7 @@ const UpdateProductPage = () => {
             ))}
           </Select>
         </Form.Item>
+
         <Form.Item
           label="Fiyat"
           name="current"
@@ -139,6 +140,21 @@ const UpdateProductPage = () => {
         >
           <InputNumber />
         </Form.Item>
+
+        <Form.Item
+          label="Stok Miktarı"
+          name="stock"
+          rules={[
+            {
+              required: true,
+              message: "Lütfen stok miktarını girin!",
+            },
+          ]}
+        >
+          <InputNumber/>
+        </Form.Item>
+
+
         <Form.Item
           label="İndirim Oranı"
           name="discount"
