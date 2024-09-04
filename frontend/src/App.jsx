@@ -30,6 +30,7 @@ import CaprazCanta from "./pages/CaprazCanta";
 import Kartlik from"./pages/Kartlik";
 import Kemer from "./pages/Kemer";
 import SirtCantasi from "./pages/SirtCantasi";
+import Test from "./pages/test";
 
 function App() {
   return (
@@ -53,6 +54,8 @@ function App() {
       <Route path="/urunler/66c5cda87a0470cce5f0704b" element={<SirtCantasi />} />
 
       <Route path="/urunler/:categoryId/product/:id" element={<ProductDetailsPage />} />
+
+      <Route path="/test" element={<Test />} />
 
 
       
