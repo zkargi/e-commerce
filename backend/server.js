@@ -18,6 +18,14 @@ const connect = async () => {
   }
 };
 
+const corsOptions = {
+  origin: 'https://kargideri.vercel.app', // Frontend domain adresiniz
+  optionsSuccessStatus: 200
+};
+app.use(cors(corsOptions));
+
+
+
 
 
 // middlewares
