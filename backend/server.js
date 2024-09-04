@@ -5,10 +5,7 @@ const app = express();
 const cors = require("cors");
 const logger = require("morgan");
 const mainRoute = require("./routes/index.js");
-
-///const port = process.env.PORT || 5173;
-const CLIENT_DOMAIN= "https://kargideri.vercel.app";
-
+const port = 5173;
 
 dotenv.config();
 
@@ -21,12 +18,6 @@ const connect = async () => {
   }
 };
 
-const corsOptions = {
-  origin: CLIENT_DOMAIN, // Your client's domain
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
 
 
 // middlewares
